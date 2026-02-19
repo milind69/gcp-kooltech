@@ -16,6 +16,7 @@ resource "google_folder" "shared" {
 resource "google_project" "myproject" {
   name       = "mpk-project"
   project_id = "mpk-project-id"
+  billing_account = "${var.billing_account}"
   folder_id = google_folder.shared.id
   provider = google.boss
   labels = {
