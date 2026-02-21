@@ -40,5 +40,5 @@ resource "google_artifact_registry_repository" "my-repo" {
 #   location = "${var.region}"
 #   project = google_project.myproject.project_id
 #   role    = "roles/run.invoker"
-#   member  = "user:milind@kooltech.xyz"
+#   member  = "user:xxxx@mail.comß"
 # }   
