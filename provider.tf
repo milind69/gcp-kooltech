@@ -13,10 +13,9 @@ terraform {
 # }
 
 provider "google" {
-  alias = "boss"
   region  = "us-central1"
   zone    = "us-central1-c"
-  project = "${var.project_id}}"
+  project = "${var.project_id}"
 
 }
 
