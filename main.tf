@@ -15,6 +15,24 @@ resource "google_project" "myproject" {
   }
 }
 
+
+# gcloud organizations add-iam-policy-binding <orgid> \
+#   --member="user:appuserrunninggtf" \
+# --role="roles/orgpolicy.policyAdmin"
+
+
+resource "google_project_organization_policy" "allow_all_members" {
+  project    = "mpk-project-id"
+  depends_on = [ google_project.myproject ]
+  constraint = "iam.allowedPolicyMemberDomains"
+
+  list_policy {
+    allow {
+      all = true
+    }
+  }
+}
+
 resource "google_project_service" "apis" {
   project = google_project.myproject.project_id
   for_each = toset([
