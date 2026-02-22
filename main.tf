@@ -27,6 +27,7 @@ resource "google_project_service" "apis" {
     "run.googleapis.com",
     "cloudbuild.googleapis.com",
     "cloudfunctions.googleapis.com",
+    "kms.googleapis.com",
   ])
   service            = each.value
   disable_on_destroy = false
