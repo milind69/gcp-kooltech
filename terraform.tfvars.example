@@ -1,0 +1,28 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# GCP Organization ID
+org_id = "123456789012"
+
+# GCP Billing Account ID
+billing_account = "01234-56789-ABCDE"
+
+# Your GCP Project ID (must be unique)
+project_id = "my-project-123"
+
+# Your domain for DNS verification (used for Apigee)
+domain_id = "example.com"
+
+# Application name used for resource naming
+app_name = "my-fastapi-app"
+
+# GCP Region
+region = "us-central1"
+
+# Apigee API Gateway hostname (must be resolvable)
+apigee_hostname = "api.yourdomain.com"
+
+# VPC and Subnet CIDR blocks
+subnet_cidr = "10.0.0.0/24"              # App subnet
+apigee_cidr = "10.1.0.0/22"              # Apigee subnet  
+psc_nat_subnet_cidr = "10.2.0.0/28"      # Private Service Connect NAT subnet
+apigee_instance_cidr = "10.3.0.0/28"     # Apigee instance subnet
