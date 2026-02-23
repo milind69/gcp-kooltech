@@ -11,3 +11,7 @@
 output "org_info" {
   value = data.google_organizations.organizations
 }
+
+# output "apigee" {
+#   value = google_apigee_organization.apigee_org
+# }

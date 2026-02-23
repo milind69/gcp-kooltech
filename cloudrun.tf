@@ -94,3 +94,33 @@ resource "google_cloud_run_v2_service_iam_member" "my-fastapi-app-external" {
 #   --region=us-central1 \
 #   --project=mpk-project-id \
 #   --port=8080
+
+## Create serverless NEG and backend service 
+
+resource "google_compute_region_network_endpoint_group" "cloudrun-neg" {
+  name         = "cloudrun-neg"
+  network_endpoint_type = "SERVERLESS"
+  region = "${var.region}"
+  project = google_project.myproject.project_id
+  cloud_run {
+    service = google_cloud_run_v2_service.my-fastapi-app.name
+  }
+}
+
+
+resource "google_compute_region_backend_service" "cloudrun_backend" {
+  name = "cloudrun-backend"
+  region = "${var.region}"
+  project = google_project.myproject.project_id
+  load_balancing_scheme = "INTERNAL_MANAGED"
+  protocol = "HTTPS"
+  backend {
+    group = google_compute_region_network_endpoint_group.cloudrun-neg.id
+  }
+}
+
+
+
+
+
+
