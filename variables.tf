@@ -44,6 +44,11 @@ variable "apigee_instance_cidr" {
   default = "10.3.0.0/28"
 }
 
+variable "apigee_subnet_cidr" {
+  type = string
+  default = "10.4.0.0/24"
+}
+
 variable "region" {
   type = string
   default = "us-central1"

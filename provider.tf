@@ -19,4 +19,9 @@ provider "google" {
 
 }
 
+provider "tls" {
+  proxy {
+    from_env = true
+  }
+}
 # https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build

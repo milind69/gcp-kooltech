@@ -1,29 +1,29 @@
-resource "google_apigee_organization" "apigee_org" {
-    project_id = google_project.myproject.project_id
-    analytics_region = "${var.region}"
-    authorized_network = google_compute_network.vpc.id
-    billing_type = "EVALUATION"
-    depends_on = [ google_service_networking_connection.apigee_vpc_connection ]
-}
+# resource "google_apigee_organization" "apigee_org" {
+#     project_id = google_project.myproject.project_id
+#     analytics_region = "${var.region}"
+#     authorized_network = google_compute_network.vpc.id
+#     billing_type = "EVALUATION"
+#     depends_on = [ google_service_networking_connection.apigee_vpc_connection ]
+# }
 
-resource "google_apigee_instance" "apigee_instance" {
-    name = "${var.app_name}-apigee-instance"
-    location = "${var.region}"
-    org_id = google_apigee_organization.apigee_org.id
+# resource "google_apigee_instance" "apigee_instance" {
+#     name = "${var.app_name}-apigee-instance"
+#     location = "${var.region}"
+#     org_id = google_apigee_organization.apigee_org.id
 
-}
+# }
 
-resource "google_apigee_environment" "apigee_env" {
-   org_id = google_apigee_organization.apigee_org.id
-   name = "dev"
-}
+# resource "google_apigee_environment" "apigee_env" {
+#    org_id = google_apigee_organization.apigee_org.id
+#    name = "dev"
+# }
 
 
 
-resource "google_apigee_instance_attachment" "apigee_attachment" {
-    instance_id = google_apigee_instance.apigee_instance.id 
-    environment = google_apigee_environment.apigee_env.name
-}
+# resource "google_apigee_instance_attachment" "apigee_attachment" {
+#     instance_id = google_apigee_instance.apigee_instance.id 
+#     environment = google_apigee_environment.apigee_env.name
+# }
 
 
 
@@ -37,10 +37,10 @@ resource "google_apigee_instance_attachment" "apigee_attachment" {
 
 #impersoname Apigee runtime SA to impersonate cloud run SA
 resource "google_service_account_iam_member" "apigee_impersonate_cloud_run_sa" {
- service_account_id = google_service_account.apigee-cloud-runnersa.name
-role = "roles/iam.serviceAccountTokenCreator"
-member = "serviceAccount:service-548941500570@gcp-sa-apigee.iam.gserviceaccount.com"
-#member = "serviceAccount:service-${google_project.myproject.number}@gcp-sa-apigee.iam.gserviceaccount.com"
+    service_account_id = google_service_account.apigee-cloud-runnersa.name
+    role = "roles/iam.serviceAccountTokenCreator"   
+    member = "serviceAccount:service-${google_project.myproject.number}@gcp-sa-apigee.iam.gserviceaccount.com"
+    #member = "serviceAccount:service-548941500570@gcp-sa-apigee.iam.gserviceaccount.com"
 }
 
 
