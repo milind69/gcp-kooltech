@@ -93,5 +93,5 @@ resource "google_service_account" "apigee-cloud-runnersa" {
 # # To tesing via browser Proxy
 # # gcloud run services proxy my-fastapi-app-app \
 # #   --region=us-central1 \
-# #   --project=mpk-project-id \
+# #   --project=$(gcloud config get project) \
 # #   --port=8080
